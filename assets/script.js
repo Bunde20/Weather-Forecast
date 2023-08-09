@@ -27,5 +27,8 @@ function getCity(city) {
         cityInfo.innerHTML = `${data.name} - ${month}/${day}/${year}`
         icon.setAttribute("src", `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
         icon.setAttribute("alt", data.weather[0].description)
+        temp.innerHTML = `Temp: ${data.main.temp}°F`
+        wind.innerHTML = `Wind: ${data.wind.speed}mph`
+        humidity.innerHTML = `Humidity: ${data.main.humidity}%`
     })
 }
