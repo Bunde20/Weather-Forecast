@@ -7,6 +7,7 @@ var temp = document.querySelector(".temp")
 var wind = document.querySelector(".wind")
 var humidity = document.querySelector(".humidity")
 var forecast = document.querySelectorAll(".forecast")
+var historyUl = document.querySelector(".historyUl")
 
 searchBtn.addEventListener("click", function () {
     var history = JSON.parse(localStorage.getItem("cities")) || []
@@ -46,6 +47,7 @@ function getForecast(city) {
         .then(function (data) {
             console.log(data)
             for (var i = 0; i < forecast.length; i++) {
+                forecast[i].innerHTML = ""
                 var index = i * 8 + 4
                 var date = new Date(data.list[index].dt * 1000)
                 var month = date.getMonth() + 1
@@ -72,5 +74,17 @@ function getForecast(city) {
 }
 
 function renderHistory() {
-    
+    var data = JSON.parse(localStorage.getItem("cities")) || []
+    for (var i = 0; i < data.length; i++) {
+        var li = document.createElement("li")
+        li.innerHTML = data[i]
+        historyUl.append(li)
+        li.addEventListener("click", function (event) {
+            var click = event.target.innerHTML
+            getCity(click)
+            getForecast(click)
+        })
+    }
 }
+
+renderHistory()
