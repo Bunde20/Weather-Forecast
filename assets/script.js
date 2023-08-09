@@ -2,6 +2,7 @@ var APIkey = "bccf102cf897ddc4659f3f10d43085ab";
 var cityInput = document.querySelector(".form-control")
 var searchBtn = document.querySelector(".searchBtn")
 var cityInfo = document.querySelector(".cityInfo")
+var icon = document.querySelector(".icon")
 var temp = document.querySelector(".temp")
 var wind = document.querySelector(".wind")
 var humidity = document.querySelector(".humidity")
@@ -24,5 +25,7 @@ function getCity(city) {
         var day = date.getDate()
         var year = date.getFullYear()
         cityInfo.innerHTML = `${data.name} - ${month}/${day}/${year}`
+        icon.setAttribute("src", `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
+        icon.setAttribute("alt", data.weather[0].description)
     })
 }
