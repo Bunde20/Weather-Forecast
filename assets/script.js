@@ -8,11 +8,14 @@ var wind = document.querySelector(".wind")
 var humidity = document.querySelector(".humidity")
 var forecast = document.querySelectorAll(".forecast")
 
-
 searchBtn.addEventListener("click", function () {
+    var history = JSON.parse(localStorage.getItem("cities")) || []
     var cityName = cityInput.value
     getCity(cityName)
     getForecast(cityName)
+    history.push(cityName)
+    localStorage.setItem("cities", JSON.stringify(history))
+    renderHistory()
 })
 
 function getCity(city) {
@@ -51,6 +54,23 @@ function getForecast(city) {
                 var dateEl = document.createElement("h3")
                 dateEl.innerHTML = `${month}/${day}/${year}`
                 forecast[i].append(dateEl)
+                var icon = document.createElement("img")
+                icon.setAttribute("src", `https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png`)
+                icon.setAttribute("alt", data.list[index].weather[0].description)
+                forecast[i].append(icon)
+                var temp = document.createElement("p")
+                temp.innerHTML = `Temp: ${data.list[index].main.temp}°F`
+                forecast[i].append(temp)
+                var wind = document.createElement("p")
+                wind.innerHTML = `Wind: ${data.list[index].wind.speed}%`
+                forecast[i].append(wind)
+                var humidity = document.createElement("p")
+                humidity.innerHTML = `Humidity: ${data.list[index].main.humidity}%`
+                forecast[i].append(humidity)
             }
         })
+}
+
+function renderHistory() {
+    
 }
