@@ -2,9 +2,13 @@ header {
     display: flex;
     font-size: xx-large;
     font-weight: 600;
+    background-color: skyblue;
 }
 
-.searchBar {
+.breakdown {
+    border: 3px solid black;
+    margin-top: 8px;
+    height: 300px;
 }
 
 .breakdown-text {
@@ -23,12 +27,29 @@ header {
 ul {
     margin-top: 1rem;
     padding-left: 0;
+    border-top: 3px solid black;
+    width: 100%;
 }
 
 li {
     list-style-type: none;
     background-color: lightgrey;
     margin-bottom: 1rem;
+    margin-top: 1rem;
     border-radius: 4px;
-    width: 380px;
+    padding: 5px;
+}
+
+.days {
+    margin-right: 0;
+    margin-left: 545px;
+    margin-top: 5px;
+}
+
+.forecast {
+    /* display: flex; */
+    flex-direction: row;
+    /* margin-left: 550px; */
+    width: 162px;
+    /* border: 3px solid black; */
 }

@@ -10,14 +10,16 @@ var forecast = document.querySelectorAll(".forecast")
 var historyUl = document.querySelector(".historyUl")
 
 searchBtn.addEventListener("click", function () {
-    var history = JSON.parse(localStorage.getItem("cities")) || []
-    var cityName = cityInput.value
-    getCity(cityName)
-    getForecast(cityName)
-    history.push(cityName)
-    localStorage.setItem("cities", JSON.stringify(history))
-    renderHistory()
-})
+    var history = JSON.parse(localStorage.getItem("cities")) || [];
+    var cityName = cityInput.value.trim();
+    if (!history.includes(cityName)) {
+    getCity(cityName);
+    getForecast(cityName);
+    history.push(cityName);
+    localStorage.setItem("cities", JSON.stringify(history));
+    renderHistory();
+    }
+});
 
 function getCity(city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=imperial`)
@@ -61,10 +63,10 @@ function getForecast(city) {
                 icon.setAttribute("alt", data.list[index].weather[0].description)
                 forecast[i].append(icon)
                 var temp = document.createElement("p")
-                temp.innerHTML = `Temp: ${data.list[index].main.temp}°F`
+                temp.innerHTML = `Temp: ${data.list[index].main.temp}°F `
                 forecast[i].append(temp)
                 var wind = document.createElement("p")
-                wind.innerHTML = `Wind: ${data.list[index].wind.speed}%`
+                wind.innerHTML = `Wind: ${data.list[index].wind.speed}% `
                 forecast[i].append(wind)
                 var humidity = document.createElement("p")
                 humidity.innerHTML = `Humidity: ${data.list[index].main.humidity}%`
