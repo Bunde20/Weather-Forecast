@@ -15,5 +15,6 @@
 ![weather mock up](https://github.com/Bunde20/Weather-Forecast/assets/135177057/19dc53e8-8079-452b-8c9f-df388793a6c0)
 
 ## Deployed Application Link:
-Here is a link to the deployed application: https://bunde20.github.io/Coding-Quiz/index.html
+Here is a link to the deployed application: https://bunde20.github.io/Weather-Forecast/
+
 
