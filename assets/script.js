@@ -72,20 +72,23 @@ function getForecast(city) {
                 humidity.innerHTML = `Humidity: ${data.list[index].main.humidity}%`
                 forecast[i].append(humidity)
             }
-        })
+        });
 }
 
 function renderHistory() {
-    var data = JSON.parse(localStorage.getItem("cities")) || []
+    // Clear existing history content
+    historyUl.innerHTML = "";
+
+    var data = JSON.parse(localStorage.getItem("cities")) || [];
     for (var i = 0; i < data.length; i++) {
-        var li = document.createElement("li")
-        li.innerHTML = data[i]
-        historyUl.append(li)
+        var li = document.createElement("li");
+        li.innerHTML = data[i];
+        historyUl.appendChild(li);
         li.addEventListener("click", function (event) {
-            var click = event.target.innerHTML
-            getCity(click)
-            getForecast(click)
-        })
+            var click = event.target.innerHTML;
+            getCity(click);
+            getForecast(click);
+        });
     }
 }
 
