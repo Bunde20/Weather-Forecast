@@ -18,6 +18,7 @@ searchBtn.addEventListener("click", function () {
     history.push(cityName);
     localStorage.setItem("cities", JSON.stringify(history));
     renderHistory();
+    cityInput.value = "";
     }
 });
 
@@ -76,7 +77,7 @@ function getForecast(city) {
 }
 
 function renderHistory() {
-    // Clear existing history content
+    // Clear existing history
     historyUl.innerHTML = "";
 
     var data = JSON.parse(localStorage.getItem("cities")) || [];
