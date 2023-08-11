@@ -1,3 +1,4 @@
+// Variables for functions
 var APIkey = "bccf102cf897ddc4659f3f10d43085ab";
 var cityInput = document.querySelector(".form-control")
 var searchBtn = document.querySelector(".searchBtn")
@@ -9,6 +10,7 @@ var humidity = document.querySelector(".humidity")
 var forecast = document.querySelectorAll(".forecast")
 var historyUl = document.querySelector(".historyUl")
 
+// Adds the city that is entered to localStorage 
 searchBtn.addEventListener("click", function () {
     var history = JSON.parse(localStorage.getItem("cities")) || [];
     var cityName = cityInput.value.trim();
@@ -22,6 +24,7 @@ searchBtn.addEventListener("click", function () {
     }
 });
 
+// Pulls information from the city entered
 function getCity(city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=imperial`)
         .then(function (res) {
@@ -42,6 +45,7 @@ function getCity(city) {
         })
 }
 
+// Adds 5 day forecast to city that is entered or selected
 function getForecast(city) {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=imperial`)
         .then(function (res) {
@@ -76,6 +80,8 @@ function getForecast(city) {
         });
 }
 
+
+// Adds an li with city name below search bar when clicked
 function renderHistory() {
     // Clear existing history
     historyUl.innerHTML = "";
